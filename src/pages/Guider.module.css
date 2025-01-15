@@ -80,21 +80,28 @@
 
 .des {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 40px 0;
-    width: 100%;
+    margin: 40px 0px; /* Horizontal margins set to 100px */
+    width: calc(100% - 200px); /* Adjust width to account for horizontal margins */
     text-align: center;
-    font-size: 18px;
+    font-size: 25px;
+    font-style: italic;
     line-height: 1.6;
     color: #666;
-    padding: 0 20px;
+    padding: 0 50px;
+}
+
+.desheader {
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .chatComportant {
     display: flex;
     justify-content: flex-end;
-    width: 70%;
+    height: 80%;
     margin: 20px 0;
 }
 

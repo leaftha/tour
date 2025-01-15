@@ -211,7 +211,9 @@ server.post("/orders/post", async (req, res) => {
         guider,
         schedule,
         hour,
-        price
+        price,
+        finished: false,
+        rating: 0
     })
     .then((r) => res.status(200).send({ msg: "Order placed" }))
     .catch((e) => res.status(300).send({ msg: "Error placing order: " + e }))

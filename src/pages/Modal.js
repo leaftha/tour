@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import style from './Modal.module.css';
 
 const Modal = ({ setModal }) => {
     const [startDate, setStartDate] = useState();
