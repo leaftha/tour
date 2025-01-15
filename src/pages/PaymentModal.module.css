@@ -1,0 +1,82 @@
+.main {
+    position: fixed; /* Hiển thị modal trên tất cả nội dung */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Nền mờ đen */
+    z-index: 1000; /* Đảm bảo modal nằm trên các thành phần khác */
+}
+
+.modalContent {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    width: 450px; /* Giảm kích thước cho phù hợp */
+    max-width: 90%;
+    animation: slideIn 0.3s ease-out; /* Thêm hiệu ứng xuất hiện */
+}
+
+h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #f9f9f9;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #f9f9f9;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50; /* Màu nền xanh */
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    font-family: inherit;
+    text-transform: none;
+    /* Đảm bảo chữ luôn rõ ràng */
+    text-align: center;
+    outline: none; /* Loại bỏ viền focus */
+}
+
+button:hover {
+    background-color: #45a049; /* Màu nền khi hover */
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

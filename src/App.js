@@ -7,6 +7,7 @@ import { ip } from './shared/ip';
 import { useEffect, useState } from 'react';
 import Guider from './pages/Guider';
 import Setting from './pages/setting';
+import ThankYou from './pages/ThankYou';
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -64,8 +65,9 @@ function App() {
             <Route path="/" element={<Home loggedIn={loggedIn} userData={userData} guiderList={guiderList} />} />
             <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/setting/:email" element={<Setting />} />
-            <Route path="/guider/:email" element={<Guider />} />
+            <Route path="/setting/:email" element={<Setting userData={userData}/>} />
+            <Route path="/guider/:email" element={<Guider userData={userData}/>} />
+            <Route path="/purchase/thankyou" element={<ThankYou />} />
         </Routes>
     );
 }
