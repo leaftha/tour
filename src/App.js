@@ -64,8 +64,8 @@ function App() {
             <Route path="/" element={<Home loggedIn={loggedIn} userData={userData} guiderList={guiderList} />} />
             <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/setting/:email" element={<Setting />} />
-            <Route path="/guider/:email" element={<Guider />} />
+            <Route path="/setting/:email" element={<Setting userData={userData} />} />
+            <Route path="/guider/:email" element={<Guider userData={userData} />} />
         </Routes>
     );
 }

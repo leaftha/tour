@@ -29,15 +29,18 @@ const listOptions = [
 
 const Home = ({ loggedIn, userData, email, guiderList }) => {
     const [currentCountry, setCurrentCountry] = useState('Korea');
+
     const navigator = useNavigate();
     console.log(guiderList);
     return (
         <div className={style.main}>
             {/* Header */}
-            <header className={style.nav}>
-                <img src="/logo.png" />
-                <Link className={style.a}>About</Link>
-                <Link className={style.a}>Contact</Link>
+            <header className={style.nav} style={loggedIn ? { background: 'white' } : {}}>
+                <div className={style.logos}>
+                    <img src="/logo.png" />
+                    <Link className={style.a}>About</Link>
+                    <Link className={style.a}>Contact</Link>
+                </div>
                 {!loggedIn ? (
                     <div>
                         <Link className={style.link} to="/login">
@@ -69,7 +72,13 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                     <div className={style.maintitle}>
                         <div>
                             <h1 className={style.Name}>LocalBuddy</h1>
-                            <h1 className={style.team}>Team : The Oppas</h1>
+                            <h1 className={style.team}>
+                                <span>"LocalBuddy”</span> connects travelers with local people.
+                            </h1>
+                            <h1 className={style.team}>The travelers can experience more authentic local travels. </h1>
+                            <h1 className={style.team}>
+                                Come on and Enjoy the <span>LOCAL!</span>
+                            </h1>
                         </div>
                         <div className={style.inputList}>
                             <input placeholder="Where are you going" />
@@ -77,34 +86,36 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                         </div>
                     </div>
                     <div className={style.imgGrid}>
-                        <img className={style.mainImg} src="/mainImg.jpg" />
-                        <img className={style.mainImg} src="/mainIm2.jpg" />
-                        <img className={style.mainImg} src="/mainImg3.jpg" />
+                        <img className={style.mainImg} src="/mainImg.png" />
+                        <img className={style.mainImg} src="/mainIm2.png" />
+                        <img className={style.mainImg} src="/mainImg3.png" />
                     </div>
                 </div>
             ) : userData.role === 'Traveler' ? (
                 <div className={style.guiderList}>
                     <h1 className={style.title}>Guiders</h1>
                     <div className={style.selects}>
-                        <h1>Country</h1>
-                        <select
-                            name="country"
-                            onChange={(e) => {
-                                setCurrentCountry(e.target.value);
-                            }}
-                        >
-                            {listOptions.map((item, idx) => (
-                                <option key={idx}>{item.name}</option>
-                            ))}
-                        </select>
-                        <h1>City</h1>
-                        <select name="city">
-                            {listOptions
-                                .find((item) => item.name === currentCountry)
-                                ?.cities.map((city, idx) => (
-                                    <option key={idx}>{city}</option>
+                        <div className={style.selectItem}>
+                            <h1>Country</h1>
+                            <select
+                                name="country"
+                                onChange={(e) => {
+                                    setCurrentCountry(e.target.value);
+                                }}
+                            >
+                                {listOptions.map((item, idx) => (
+                                    <option key={idx}>{item.name}</option>
                                 ))}
-                        </select>
+                            </select>
+                            <h1>City</h1>
+                            <select name="city">
+                                {listOptions
+                                    .find((item) => item.name === currentCountry)
+                                    ?.cities.map((city, idx) => (
+                                        <option key={idx}>{city}</option>
+                                    ))}
+                            </select>
+                        </div>
                     </div>
 
                     {/* Guider List */}
@@ -130,6 +141,7 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                             ))}
                         </div>
                         <div className={style.ranking}>
+                            <h1 className={style.rankingTitle}>Top Raking</h1>
                             {guiderList.map((item, idx) => (
                                 <div
                                     className={style.rankingItem}

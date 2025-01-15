@@ -14,7 +14,6 @@ const LoginPage = ({ setLoggedIn, setUserData, setEmail }) => {
         console.log('Password:', password);
 
         const loginData = { email, password };
-        console.log(loginData);
         try {
             const response = await postData(ip + 'login', loginData);
             setLoggedIn(true);

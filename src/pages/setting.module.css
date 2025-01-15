@@ -1,0 +1,85 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.imgChanger {
+    width: 50%;
+    margin-top: 100px;
+}
+
+.imgChanger img {
+    border-radius: 50%;
+}
+
+.fileInput {
+    background: none;
+}
+
+.body {
+    width: 80%;
+}
+
+.Namecontent {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.inputTitle {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.inputBox {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.seletBody {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 0;
+}
+
+.selects {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    margin-bottom: 0;
+}
+
+select {
+    margin: 0;
+}
+
+.description {
+    width: 80%;
+    height: 300px;
+}
+.btn {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: none;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background: #e9ecef;
+}

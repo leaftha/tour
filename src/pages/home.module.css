@@ -17,9 +17,16 @@
     /* margin-right: 20px; */
 }
 
+.logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .a {
     color: black;
     text-decoration: none;
+    margin-left: 50px;
 }
 
 .nav img {
@@ -47,6 +54,11 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+}
+
+.selectItem {
+    display: flex;
+    width: 50%;
 }
 
 .selects h1 {
@@ -233,12 +245,22 @@
     border-radius: 10px;
 }
 
+.maintitle input::placeholder {
+    text-align: center;
+}
 .Name {
+    /* text-align: center; */
     font-size: 100px;
 }
 
 .team {
-    font-size: 50px;
+    /* text-align: center; */
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.team span {
+    color: rgb(61, 165, 255);
 }
 
 .imgGrid {
@@ -276,4 +298,11 @@
 
 .inputList {
     display: flex;
+}
+
+.rankingTitle {
+    font-size: 30px;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
 }
