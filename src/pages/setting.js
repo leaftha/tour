@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import style from './setting.module.css';
 import { ip } from '../shared/ip';
 var listOptions = [
     {
@@ -36,6 +37,7 @@ const Setting = () => {
                 console.log(data);
                 // console.log('Response Data:', data);
                 setUserName(data.username);
+                console.log(data);
                 setImgUrl(data.avatar);
                 setCounry(data.country);
                 setCity(data.city);
@@ -58,7 +60,6 @@ const Setting = () => {
             phone: '1233214',
             description: des,
         };
-        console.log(eiitData);
         try {
             const response = await postData(ip + 'account/' + parm.email, eiitData);
             console.log('Server Response:', response);
@@ -78,17 +79,17 @@ const Setting = () => {
         var result = response.json();
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
-            console.log(result);
         }
 
         return result;
     };
 
     return (
-        <div>
-            <div>
+        <div className={style.main}>
+            <div className={style.imgChanger}>
                 <img src={ImgUrl} alt="User" />
                 <input
+                    className={style.fileInput}
                     onChange={(e) => {
                         var imgFile = e.target.files[0];
                         if (imgFile) {
@@ -103,15 +104,22 @@ const Setting = () => {
                     name="myImage"
                     accept="image/png, image/gif, image/jpeg"
                 />
-                <div>
+            </div>
+            <div className={style.body}>
+                <div className={style.Namecontent}>
+                    <labe className={style.inputTitle}>User Name</labe>
                     <input
+                        className={style.inputBox}
                         value={username}
                         onChange={(e) => {
                             setUserName(e.target.value);
                         }}
                     />
+                </div>
 
-                    <div>
+                <div className={style.seletBody}>
+                    <label className={style.inputTitle}>Country</label>
+                    <div className={style.select}>
                         <select
                             value={country}
                             name="country"
@@ -123,6 +131,9 @@ const Setting = () => {
                                 <option>{item.name}</option>
                             ))}
                         </select>
+                    </div>
+                    <label className={style.inputTitle}>City</label>
+                    <div className={style.select}>
                         <select
                             name="city"
                             value={city}
@@ -137,21 +148,24 @@ const Setting = () => {
                                 ))}
                         </select>
                     </div>
-                    <textarea
-                        value={des}
-                        onChange={(e) => {
-                            setDes(e.target.value);
-                        }}
-                    />
                 </div>
-                <button
-                    onClick={() => {
-                        editHandler();
+                <h1 className={style.inputTitle}>Description</h1>
+                <textarea
+                    className={style.description}
+                    value={des}
+                    onChange={(e) => {
+                        setDes(e.target.value);
                     }}
-                >
-                    Change
-                </button>
+                />
             </div>
+            <button
+                className={style.btn}
+                onClick={() => {
+                    editHandler();
+                }}
+            >
+                Change
+            </button>
         </div>
     );
 };
