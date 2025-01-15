@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import style from './Modal.module.css';
 
 const Modal = ({ setModal }) => {
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
     return (
         <div
             className={style.main}
@@ -10,7 +13,7 @@ const Modal = ({ setModal }) => {
         >
             <div className={style.body} onClick={(e) => e.stopPropagation()}>
                 <div>
-                    <h1>set a date</h1>
+                    <h1>Choose date</h1>
                     <input type="date" />
                     <input type="date" />
                 </div>
