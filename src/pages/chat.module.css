@@ -1,0 +1,67 @@
+.main {
+    right: 0;
+    bottom: 0;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    background: #ffffff;
+    position: fixed;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* padding: 10px; */
+    border-bottom: 1px solid black;
+}
+
+.title {
+    font-size: 50px;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.closeButton {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.chatBody {
+    width: 100%;
+    height: 100%;
+}
+
+.chatBody p {
+    font-size: 20px;
+    margin: 20px 10px;
+}
+
+.chatBody p:nth-child(even) {
+    text-align: right;
+}
+
+.inputComportent {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    bottom: 0;
+    width: 100%;
+}
+
+.inputComportent img {
+    width: 5%;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.input {
+    width: 90%;
+    height: 30px;
+    /* position: fixed; */
+}
