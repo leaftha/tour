@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ip } from '../shared/ip';
 import Chat from './chat';
 import style from './Guider.module.css';
 import { useParams } from 'react-router-dom';
 import Modal from './Modal';
+import ReactStars from 'react-stars';
 
 // const data1 = {
 //     email: 'dalsfkj',
@@ -16,7 +17,7 @@ import Modal from './Modal';
 const Guider = () => {
     const [data, setData] = useState({});
     const [chatModal, setChatModal] = useState(false);
-    const [ranking, setRanking] = useState(0);
+    const [rating, setRating] = useState(0);
     const [modal, setModal] = useState(false);
     const parm = useParams();
 
@@ -43,17 +44,19 @@ const Guider = () => {
     };
 
     const GetUserRantingData = async () => {
+        console.log("email", parm.email);
         try {
-            const response = await fetch(ip + 'travelers/' + parm.email, {
+            fetch(ip + 'guiders/' + encodeURIComponent(parm.email), {
                 method: 'GET',
-            });
-
-            if (!response.ok) {
-                throw new Error('네트워크 응답이 좋지 않습니다');
-            }
-
-            const data = await response.json();
-            setRanking(data.rating);
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }).then((respond) => {
+                return respond.json()
+            }).then((data) => {
+                setRating(data.rating)
+                console.log(data.rating)
+            }).catch((e) => console.log(e));
             // console.log('Server Response:', data);
         } catch (error) {
             console.error('Error:', error);
@@ -68,9 +71,24 @@ const Guider = () => {
                 </div>
                 <div className={style.content}>
                     <p>Email : {data.email}</p>
-                    <p>Country : {data.country}</p>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                        <p>Country:</p>
+                        {data.country == "Korea" ? 
+                        <img src="/korea.jpg" width={100} height={50}/> :
+                        <img src="/vietnam.png"/>}
+                        <p>{data.country}</p>
+                    </div>
                     <p>City : {data.city}</p>
-                    <p>Rating : {ranking}</p>
+                    <div className={style["rating-row"]}>
+                        <p>Rating:</p>
+                        <ReactStars
+                            count={5} // Maximum 5 stars
+                            value={Math.round(rating)} // Current rating value
+                            size={24}
+                            edit={false}
+                        />
+                        <p>{rating.toFixed(1)}/5</p>
+                    </div>
                 </div>
             </div>
             <div className={style.des}>
@@ -78,13 +96,13 @@ const Guider = () => {
             </div>
             <div className={style.chatComportant}>
                 <button className={style.btn} onClick={() => setChatModal(true)}>
-                    Try to Chat
+                    Chat
                 </button>
             </div>
             {chatModal && <Chat setChatModal={setChatModal} />}
             <div>
                 <button onClick={() => setModal(true)} className={style.btn}>
-                    Ok
+                    Book
                 </button>
             </div>
             {modal && <Modal setModal={setModal} />}
