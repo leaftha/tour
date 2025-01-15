@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import style from './setting.module.css';
 import { ip } from '../shared/ip';
 var listOptions = [
@@ -19,6 +19,7 @@ const Setting = () => {
     const [city, setCity] = useState('Busan');
     const [des, setDes] = useState('');
     const parm = useParams();
+    const navigator = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,7 +63,9 @@ const Setting = () => {
         };
         try {
             const response = await postData(ip + 'account/' + parm.email, eiitData);
+
             console.log('Server Response:', response);
+            navigator('/');
         } catch (error) {
             console.error('Error:', error);
         }

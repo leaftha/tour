@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ip } from '../shared/ip';
 import Chat from './chat';
 import style from './Guider.module.css';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Modal from './PaymentModal';
 import ReactStars from 'react-stars';
 
@@ -22,6 +22,7 @@ const Guider = (props) => {
     const [modal, setModal] = useState(false);
     const [listFeedback, setListFeedback] = useState([]);
     const parm = useParams();
+    const navigator = useNavigate();
 
     useEffect(() => {
         GetUserData();
@@ -49,34 +50,34 @@ const Guider = (props) => {
     };
 
     const GetUserRantingData = async () => {
-        console.log("email", parm.email);
+        console.log('Fetching rating for email:', parm.email);
         try {
-            fetch(ip + 'guiders/' + encodeURIComponent(parm.email), {
+            const response = await fetch(ip + 'guiders/' + encodeURIComponent(parm.email), {
                 method: 'GET',
                 headers: {
-                    "Content-Type": "application/json",
-                }
-            }).then((respond) => {
-                return respond.json()
-            }).then((data) => {
-                setRating(data.rating)
-                console.log(data.rating)
+                    'Content-Type': 'application/json',
+                },
+            });
 
-            }).catch((e) => console.log(e));
-            // console.log('Server Response:', data);
+            if (!response.ok) {
+                throw new Error('Failed to fetch rating data');
+            }
+
+            const data = await response.json();
+            console.log('Rating data fetched:', data);
+            setRating(data.rating || 0); // Fallback to 0 if undefined
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error fetching rating:', error);
         }
     };
 
     function GetFeedbackList() {
-        fetch(ip + "orders/" + encodeURIComponent(parm.email), {
-            method: "GET",
-
+        fetch(ip + 'orders/' + encodeURIComponent(parm.email), {
+            method: 'GET',
         })
-        .then((respond) => respond.json())
-        .then((data) => setListFeedback(data))
-        .catch((e) => console.log(e));
+            .then((respond) => respond.json())
+            .then((data) => setListFeedback(data))
+            .catch((e) => console.log(e));
     }
 
     function onClose() {
@@ -84,68 +85,82 @@ const Guider = (props) => {
     }
     return (
         <div className={style.main}>
-            <h1 className={style.title}>Guider {data.username}</h1>
-            <div className={style.introduction}>
-                <div className={style.imgbody}>
-                    <img className={style.img} src={data.avatar} alt="profile Img" />
+            <header className={style.nav}>
+                <div className={style.logos}>
+                    <img src="/logo.png" />
+                    <Link className={style.a}>About</Link>
+                    <Link className={style.a}>Contact</Link>
                 </div>
-                <div className={style.content}>
-                    <p>Email : {data.email}</p>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                        <p>Country:</p>
-                        {data.country == "Korea" ? 
-                        <img src="/korea.jpg" width={100} height={50}/> :
-                        <img src="/vietnam.png" width={100} height={50}/>}
-                        <p>{data.country}, {data.city}</p>
+
+                <h1
+                    className={style.myPage}
+                    onClick={() => {
+                        navigator(`/setting/${data.email}`);
+                    }}
+                >
+                    {data.email}
+                </h1>
+            </header>
+            <h1 className={style.title}>Guider "{data.username}"</h1>
+            <div className={style.introduction}>
+                <div className={style.introductionContent}>
+                    <div className={style.imgbody}>
+                        <img className={style.img} src={data.avatar} alt="profile Img" />
                     </div>
-                    <p>City : {data.city}</p>
-                    <div className={style["rating-row"]}>
-                        <p>Rating:</p>
-                        <ReactStars
-                            count={5} // Maximum 5 stars
-                            value={Math.round(rating)} // Current rating value
-                            size={24}
-                            edit={false}
-                        />
-                        <p>{rating.toFixed(1)}/5</p>
+                    <div className={style.content}>
+                        <p>Email : {data.email}</p>
+                        <div className={style.countryContent}>
+                            <p>Country:</p>
+                            {data.country === 'Korea' ? <img src="/korea.jpg" /> : <img src="/vietnam.png" />}
+                            <p>{data.country}</p>
+                        </div>
+                        <p>City : {data.city}</p>
+                        <div className={style['rating-row']}>
+                            <p>Rating:</p>
+                            <ReactStars
+                                count={5} // Maximum 5 stars
+                                value={Math.round(rating)} // Current rating value
+                                size={24}
+                                edit={false}
+                            />
+                            <p>{rating.toFixed(1)}/5</p>
+                        </div>
                     </div>
                 </div>
                 <div className={style.chatComportant}>
                     <button className={style.btn} onClick={() => setChatModal(true)}>
                         Chat
                     </button>
-                </div>
-                <div className={style.chatComportant}>
                     <button className={style.btn} onClick={() => setModal(true)}>
                         Book
                     </button>
                 </div>
             </div>
-            <p>_________________________</p>
             <div className={style.des}>
-                <p className={style.feedbackHeader}>{data.username}'s message: <br/></p>
-                <p>
-                   {data.description}
-                </p>
+                <p className={style.desheader}>{data.username}'s message</p>
+                <p>{data.description}</p>
             </div>
-            <h2 className={style.feedbackHeader}>Users' feedbacks:</h2>
-            <div className={style.feedback}>
-                {listFeedback.map((item, idx) => (
-                    <div className={style.feedbackItem} key={idx}>
-                        <p>{item.traveler}</p>
-                        <ReactStars
-                            count={5} // Maximum 5 stars
-                            value={Math.round(item.rating)} // Current rating value
-                            size={12}
-                            edit={false}
-                        />
-                        <p>{item.feedback}</p>
-                    </div>
-                ))}
+            <div className={style.feedbackContainer}>
+                <h2 className={style.feedbackTitle}>Users' feedbacks</h2>
+                <div className={style.feedback}>
+                    {listFeedback.map((item, idx) => (
+                        <div className={style.feedbackItem} key={idx}>
+                            <h1 className={style.feedbackItemTitle}>{item.traveler}</h1>
+                            <ReactStars
+                                count={5} // Maximum 5 stars
+                                value={Math.round(item.rating)} // Current rating value
+                                size={20}
+                                edit={false}
+                            />
+                            <p>{item.feedback}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
+
             {chatModal && <Chat setChatModal={setChatModal} />}
-            
-            {modal && <Modal setModal={setModal} onClose={onClose} guider={data} userData={userData}/>}
+
+            {modal && <Modal setModal={setModal} onClose={onClose} guider={data} userData={userData} />}
         </div>
     );
 };
