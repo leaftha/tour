@@ -93,7 +93,7 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                 </div>
             ) : userData.role === 'Traveler' ? (
                 <div className={style.guiderList}>
-                    <h1 className={style.title}>Guiders</h1>
+                    <h1 className={style.title}>List of Guiders</h1>
                     <div className={style.selects}>
                         <div className={style.selectItem}>
                             <h1>Country</h1>
@@ -133,7 +133,7 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                                         <img className={style.avatar} src={item.avatar} alt="avatar" />
                                     </div>
                                     <div className={style.itemContainer}>
-                                        <h1>{item.email}</h1>
+                                        <h1>{item.username}</h1>
                                         <h1>{item.country}</h1>
                                         <h1>{item.city}</h1>
                                     </div>
@@ -141,7 +141,7 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                             ))}
                         </div>
                         <div className={style.ranking}>
-                            <h1 className={style.rankingTitle}>Top Raking</h1>
+                            <h1 className={style.rankingTitle}>Top Ranking</h1>
                             {guiderList.map((item, idx) => (
                                 <div
                                     className={style.rankingItem}

@@ -38,7 +38,7 @@ select {
     background: #f9f9f9;
 }
 
-input[type="text"] {
+input[type='text'] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -48,35 +48,25 @@ input[type="text"] {
     background: #f9f9f9;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4caf50; /* Màu nền xanh */
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+.btns {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: none;
+    transition: 0.2s;
     margin: 0 auto;
-    display: block;
-    font-family: inherit;
-    text-transform: none;
-    /* Đảm bảo chữ luôn rõ ràng */
-    text-align: center;
-    outline: none; /* Loại bỏ viền focus */
+    cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049; /* Màu nền khi hover */
-}
-
-/* Hiệu ứng xuất hiện */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn:hover {
+    background: #e9ecef;
 }

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { ip } from '../shared/ip';
 import style from './register.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
     const [currentCountry, setCurrentCountry] = useState('Korea');
     const [role, setRole] = useState('Traveler');
+    const navigator = useNavigate();
 
     var listOptions = [
         {
@@ -33,6 +35,7 @@ const RegisterPage = () => {
         console.log(ResgitData);
         try {
             const response = await postData(ip + 'register', ResgitData);
+            navigator('/');
             console.log('Server Response:', response);
         } catch (error) {
             console.error('Error:', error);
