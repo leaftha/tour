@@ -65,8 +65,22 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
 
             {/* Main Content */}
             {!loggedIn ? (
-                <div className={style.logginFrist}>
-                    <h1>Please login first.</h1>
+                <div className={style.mainBody}>
+                    <div className={style.maintitle}>
+                        <div>
+                            <h1 className={style.Name}>LocalBuddy</h1>
+                            <h1 className={style.team}>Team : The Oppas</h1>
+                        </div>
+                        <div className={style.inputList}>
+                            <input placeholder="Where are you going" />
+                            <button className={style.btn}>Search</button>
+                        </div>
+                    </div>
+                    <div className={style.imgGrid}>
+                        <img className={style.mainImg} src="/mainImg.jpg" />
+                        <img className={style.mainImg} src="/mainIm2.jpg" />
+                        <img className={style.mainImg} src="/mainImg3.jpg" />
+                    </div>
                 </div>
             ) : userData.role === 'Traveler' ? (
                 <div className={style.guiderList}>
@@ -149,6 +163,7 @@ const Home = ({ loggedIn, userData, email, guiderList }) => {
                     ))}
                 </div>
             )}
+            {/* <div className={style.foot}></div> */}
         </div>
     );
 };

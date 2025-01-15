@@ -62,7 +62,7 @@ const Guider = (props) => {
 
     const closeModal = () => {
         setModal(false);
-    }
+    };
 
     return (
         <div className={style.main}>
@@ -92,7 +92,7 @@ const Guider = (props) => {
                     Book
                 </button>
             </div>
-            {modal && <Modal guider = {data} onClose = {closeModal} userData={props.userData}/>}
+            {modal && <Modal guider={data} onClose={closeModal} userData={props.userData} />}
         </div>
     );
 };

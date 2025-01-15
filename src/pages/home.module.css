@@ -10,10 +10,11 @@
     width: 100%;
     height: 80px;
     justify-content: space-between;
+    background-color: rgb(222, 215, 206);
     align-items: center;
     box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
     font-size: 30px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 .a {
@@ -179,11 +180,14 @@
 }
 
 .logginFrist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 100%;
     font-size: 100px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 .btn {
@@ -199,4 +203,77 @@
 
 .btn:hover {
     background: #e9ecef;
+}
+
+.mainBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(222, 215, 206);
+    width: 100%;
+    height: 100vh;
+    /* margin-top: 20px; */
+}
+
+.maintitle {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.maintitle input {
+    margin-top: 20px;
+    width: 500px;
+    height: 60px;
+    font-size: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.Name {
+    font-size: 100px;
+}
+
+.team {
+    font-size: 50px;
+}
+
+.imgGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 기본 2열 */
+    grid-template-rows: auto auto; /* 행 크기 자동 */
+    justify-items: center; /* 아이템을 중앙에 정렬 */
+}
+.mainImg:last-child {
+    grid-column: span 2; /* 마지막 이미지를 두 열에 걸치게 함 */
+    justify-self: center; /* 자신을 중앙에 정렬 */
+}
+.mainImg {
+    width: 500px;
+    height: 300px;
+    margin: 20px;
+    border-radius: 40px;
+}
+
+.btn {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: none;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background: #ffffff;
+}
+
+.inputList {
+    display: flex;
 }
