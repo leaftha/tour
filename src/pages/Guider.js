@@ -36,6 +36,7 @@ const Guider = () => {
             }
 
             const data = await response.json();
+            console.log(data);
             setData(data);
             // console.log('Server Response:', data);
         } catch (error) {
@@ -56,6 +57,7 @@ const Guider = () => {
             }).then((data) => {
                 setRating(data.rating)
                 console.log(data.rating)
+
             }).catch((e) => console.log(e));
             // console.log('Server Response:', data);
         } catch (error) {
@@ -64,7 +66,7 @@ const Guider = () => {
     };
     return (
         <div className={style.main}>
-            <h1 className={style.title}>Guider : {data.username}</h1>
+            <h1 className={style.title}>Guider {data.username}</h1>
             <div className={style.introduction}>
                 <div className={style.imgbody}>
                     <img className={style.img} src={data.avatar} alt="profile Img" />
@@ -75,8 +77,8 @@ const Guider = () => {
                         <p>Country:</p>
                         {data.country == "Korea" ? 
                         <img src="/korea.jpg" width={100} height={50}/> :
-                        <img src="/vietnam.png"/>}
-                        <p>{data.country}</p>
+                        <img src="/vietnam.png" width={100} height={50}/>}
+                        <p>{data.country}, {data.city}</p>
                     </div>
                     <p>City : {data.city}</p>
                     <div className={style["rating-row"]}>
@@ -90,15 +92,20 @@ const Guider = () => {
                         <p>{rating.toFixed(1)}/5</p>
                     </div>
                 </div>
+                <div className={style.chatComportant}>
+                    <button className={style.btn} onClick={() => setChatModal(true)}>
+                        Chat
+                    </button>
+                </div>
             </div>
+            <p>_________________________</p>
             <div className={style.des}>
-                <p>{data.description}</p>
+                <p className={style.desheader}>{data.username}'s message: <br/></p>
+                <p>
+                   {data.description}
+                </p>
             </div>
-            <div className={style.chatComportant}>
-                <button className={style.btn} onClick={() => setChatModal(true)}>
-                    Chat
-                </button>
-            </div>
+            
             {chatModal && <Chat setChatModal={setChatModal} />}
             <div>
                 <button onClick={() => setModal(true)} className={style.btn}>
