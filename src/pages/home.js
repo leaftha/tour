@@ -29,12 +29,13 @@ const listOptions = [
 
 const Home = ({ loggedIn, userData, email, guiderList }) => {
     const [currentCountry, setCurrentCountry] = useState('Korea');
+
     const navigator = useNavigate();
     console.log(guiderList);
     return (
         <div className={style.main}>
             {/* Header */}
-            <header className={style.nav}>
+            <header className={style.nav} style={loggedIn ? { background: 'white' } : {}}>
                 <div className={style.logos}>
                     <img src="/logo.png" />
                     <Link className={style.a}>About</Link>
