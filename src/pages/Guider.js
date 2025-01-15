@@ -115,6 +115,11 @@ const Guider = (props) => {
                         Chat
                     </button>
                 </div>
+                <div className={style.chatComportant}>
+                    <button className={style.btn} onClick={() => setModal(true)}>
+                        Book
+                    </button>
+                </div>
             </div>
             <p>_________________________</p>
             <div className={style.des}>
@@ -139,11 +144,7 @@ const Guider = (props) => {
                 ))}
             </div>
             {chatModal && <Chat setChatModal={setChatModal} />}
-            <div>
-                <button onClick={() => setModal(true)} className={style.btn}>
-                    Book
-                </button>
-            </div>
+            
             {modal && <Modal setModal={setModal} onClose={onClose} guider={data} userData={userData}/>}
         </div>
     );
