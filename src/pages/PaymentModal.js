@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Modal = (props) => {
     const navigate = useNavigate();
     var { guider, onClose, userData } = props;
-    console.log("a", guider);
+    console.log("p", props);
     var [ hour, setHour ] = useState("");
     var [ price, setPrice ] = useState("");
     var [ schedule, setSchedule ] = useState("");
@@ -60,6 +60,7 @@ const Modal = (props) => {
                 schedule,
                 hour,
                 price,
+                rating: Math.round(Math.random() * 5)
             })
         }).then((respond) => {
             navigate("/")

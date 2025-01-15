@@ -203,17 +203,43 @@ server.get("/orders", async (req, res) => {
     return;
 })
 
+server.get("/orders/:email", async (req, res) => {
+    var { email } = req.params;
+    var result = await orderCol.find({ guider: email }).toArray();
+    res.status(200).send(result);
+    return;
+})
+
 server.post("/orders/post", async (req, res) => {
-    var { traveler, guider, schedule, hour, price } = req.body;
+    var { traveler, guider, schedule, hour, price, rating } = req.body;
     var at = new Date();
+    var msg = "";
+    var rand = Math.round(Math.random() * 3);
+    switch (rand) {
+        case 1:
+            msg = "Very good guider, he's very funny!"
+            break;
+        case 2:
+            msg = "He took us to eat yummy foods, he's the best!"
+            break;
+        case 3:
+            msg = "He's a bit boring, he didn't talk much"
+            break;
+        default:
+            msg = "He's very talk-a-tive, our team like him the most!";
+            break;
+    }
     orderCol.insertOne({
         traveler,
         guider,
         schedule,
         hour,
         price,
-        finished: false,
-        rating: 0
+        feedback: msg,
+        createdAt: new Date(),
+        finishedAt: new Date(new Date().setHours(new Date().getHours() + 2)),
+        finished: true,
+        rating: rating
     })
     .then((r) => res.status(200).send({ msg: "Order placed" }))
     .catch((e) => res.status(300).send({ msg: "Error placing order: " + e }))

@@ -105,6 +105,63 @@
     margin: 20px 0;
 }
 
+.feedback {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 80%; /* Set width to take up 80% of the screen */
+    max-width: 1200px; /* Optional: Cap the maximum width */
+    margin-left: auto; /* Center align the container */
+    margin-right: auto; /* Center align the container */
+    font-size: 18px; /* Larger font size for better readability */
+}
+
+.feedbackItem {
+    margin-bottom: 20px; /* Increase spacing between feedback items */
+    padding: 20px; /* More padding for individual items */
+    background-color: #ffffff; /* White background for individual feedback */
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Increased space between elements */
+    width: 100%; /* Ensure it uses the full width of the parent container */
+}
+
+.feedbackItem p {
+    margin: 0; /* Remove default margins */
+    font-size: 18px; /* Match parent font size */
+    color: #333; /* Dark gray text for readability */
+}
+
+.feedbackItem p:first-child {
+    font-weight: bold; /* Highlight the traveler's name */
+    color: #007bff; /* Add color for emphasis (adjust to match your theme) */
+    font-size: 20px; /* Larger font for the traveler's name */
+}
+
+.feedbackItem p:nth-child(2) {
+    font-size: 18px;
+    color: #ff9f00; /* Gold-like color for ratings */
+}
+
+.feedbackItem p:nth-child(3) {
+    font-style: italic; /* Make the feedback text distinct */
+    color: #555; /* Slightly lighter gray */
+}
+
+.feedbackHeader {
+    font-size: 32px; /* Larger font size for better visibility */
+    font-weight: bold; /* Bold text */
+    color: #333; /* Darker color for better contrast */
+    text-align: left; /* Align text to the left */
+    margin-bottom: 20px; /* Add spacing below the heading */
+    padding: 10px; /* Add padding for better spacing */
+    border-bottom: 2px solid #007bff; /* Optional: Add a bottom border for emphasis */
+}
+
 .btn {
     border: 1px solid #dee2e6;
     padding: 12px 20px;
