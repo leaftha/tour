@@ -7,7 +7,7 @@ const RegisterPage = ({ setLoggedIn }) => {
     const [currentCountry, setCurrentCountry] = useState('Korea');
     const [role, setRole] = useState('Traveler');
     const navigator = useNavigate();
-
+    console.log(typeof setLoggedIn);
     var listOptions = [
         {
             name: 'Korea',
@@ -35,7 +35,6 @@ const RegisterPage = ({ setLoggedIn }) => {
         console.log(ResgitData);
         try {
             const response = await postData(ip + 'register', ResgitData);
-            setLoggedIn(true);
             navigator('/');
             console.log('Server Response:', response);
         } catch (error) {
@@ -58,10 +57,10 @@ const RegisterPage = ({ setLoggedIn }) => {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(data),
         });
-        var result = response.json();
+        var result = await response.json();
+        console.log(result);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
-            console.log(result);
         }
 
         return result;
@@ -74,7 +73,7 @@ const RegisterPage = ({ setLoggedIn }) => {
                     <input type="email" name="email" placeholder="Email" required />
                 </div>
                 <div className={style.inputItme}>
-                    <label>userName</label>
+                    <label>Name</label>
                     <input name="username" placeholder="userName" required />
                 </div>
                 <div className={style.inputItme}>
@@ -110,11 +109,6 @@ const RegisterPage = ({ setLoggedIn }) => {
                     </select>
                 </div>
 
-                {/* {role === 'Guider' && (
-                    <div className={style.textInput}>
-                        <textarea></textarea>
-                    </div>
-                )} */}
                 <button className={style.btn} type="submit">
                     Submit
                 </button>

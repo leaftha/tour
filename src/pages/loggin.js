@@ -40,6 +40,7 @@ const LoginPage = ({ setLoggedIn, setUserData, setEmail }) => {
         });
         var result = response.json();
         if (!response.ok) {
+            alert('long Password');
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 

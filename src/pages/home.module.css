@@ -159,7 +159,7 @@
 .guiderItem {
     display: flex;
     width: 50%;
-    /* flex-direction: column; */
+    height: 50%;
     margin: 20px auto;
     padding: 20px;
     font-size: 20px;
@@ -183,6 +183,9 @@
     margin: 5px 0;
     font-size: 18px;
     color: #212529;
+}
+.guiderItem h1:first-child {
+    font-size: 25px;
 }
 
 .guiderItem:hover {
@@ -305,4 +308,45 @@
     text-align: center;
     margin: 20px 0;
     font-weight: bold;
+}
+
+.inputNames {
+    margin-left: 20px;
+}
+
+.inputNames input {
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.travlerItem {
+    display: flex;
+    width: 50%;
+    height: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    justify-content: space-between;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* align-items: center; */
+    background-color: #f8f9fa;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.travlerItem h1 {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #212529;
+}
+
+.travlerItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    background-color: #e9ecef;
 }

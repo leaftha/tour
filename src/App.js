@@ -56,6 +56,8 @@ function App() {
         if (loggedIn) {
             GetUserData();
             GetGuiderList();
+
+            console.log(userData);
         }
     }, [loggedIn]);
 
@@ -63,7 +65,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home loggedIn={loggedIn} userData={userData} guiderList={guiderList} />} />
             <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
-            <Route path="/register" element={<RegisterPage />} setLoggedIn={setLoggedIn} />
+            <Route path="/register" element={<RegisterPage setLoggedIn={setLoggedIn} />} />
             <Route path="/setting/:email" element={<Setting userData={userData} />} />
             <Route path="/guider/:email" element={<Guider userData={userData} />} />
         </Routes>
