@@ -3,7 +3,7 @@ import { ip } from '../shared/ip';
 import style from './register.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const RegisterPage = () => {
+const RegisterPage = ({ setLoggedIn }) => {
     const [currentCountry, setCurrentCountry] = useState('Korea');
     const [role, setRole] = useState('Traveler');
     const navigator = useNavigate();
@@ -35,6 +35,7 @@ const RegisterPage = () => {
         console.log(ResgitData);
         try {
             const response = await postData(ip + 'register', ResgitData);
+            setLoggedIn(true);
             navigator('/');
             console.log('Server Response:', response);
         } catch (error) {
