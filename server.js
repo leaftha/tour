@@ -6,7 +6,7 @@ var server = express();
 server.use(cors());
 server.use(express.json());
 
-const MongoURL = "mongodb+srv://hienne:Hien123@clusterhehe.vjr23zx.mongodb.net/?retryWrites=true&w=majority&appName=Clusterhehe";
+const MongoURL = "";
 var mongodb = new MongoClient(MongoURL);
 var accountCol = mongodb.db("TourGuider").collection("Account");
 var guiderCol = mongodb.db("TourGuider").collection("Guider");
